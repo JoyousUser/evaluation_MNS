@@ -39,7 +39,6 @@ All is stored in llm variable for the model.
 The password is called in the login route.
 The current setup does not use langgraph tools yet, but as they would be useful i recommend a model that handles tools.
 
-
 # /evaluation_MNS/frontend-react/le_mixologue_augmente/.env
 
 VITE_API_URL=

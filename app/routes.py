@@ -91,6 +91,9 @@ def api_get_cocktail(cocktail_id):
 @main.route('/api/history')
 def api_history():
     """API endpoint for cocktail history"""
+    if not session.get('is_admin'):
+        return jsonify({'success': False, 'error': 'Admin access required'}), 403
+        
     cocktails = Cocktail.query.order_by(Cocktail.created_at.desc()).all()
     return jsonify({
         'success': True,

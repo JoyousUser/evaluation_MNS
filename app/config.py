@@ -11,3 +11,4 @@ class Config:
     AI_TEMPERATURE = float(os.environ.get('AI_TEMPERATURE', 0.7))
     AI_MAX_TOKENS = int(os.environ.get('AI_MAX_TOKENS', 500))
     MAX_HISTORY_DAYS = int(os.environ.get('MAX_HISTORY_DAYS', 365))
+    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD')

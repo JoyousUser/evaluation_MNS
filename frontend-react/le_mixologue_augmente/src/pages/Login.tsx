@@ -22,7 +22,8 @@ const Login: FC = () => {
     
     try {
       await apiLogin(password);
-      navigate('/admin');
+      navigate('/history');
+      console.log('Login successful');
     } catch (err) {
       setError('Invalid password. Please try again.');
     } finally {
