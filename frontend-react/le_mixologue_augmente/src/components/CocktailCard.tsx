@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Cocktail } from '../services/api';
+import type { FC } from 'react';
+import type { Cocktail } from '../services/api';
 
 interface CocktailCardProps {
   cocktail: Cocktail;

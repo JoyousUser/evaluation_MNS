@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import CocktailForm from '../components/CocktailForm';
+import type { FC } from 'react';
+import  CocktailForm from '../components/CocktailForm';
 import { Link } from 'react-router-dom';
 
 const Home: FC = () => {

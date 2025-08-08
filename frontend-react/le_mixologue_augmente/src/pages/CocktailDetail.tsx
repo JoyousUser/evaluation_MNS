@@ -1,8 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
+import type { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import CocktailCard from '../components/CocktailCard';
 import { getCocktailById } from '../services/api';
-import { Cocktail } from '../services/api';
+import type{ Cocktail } from '../services/api';
 
 const CocktailDetail: FC = () => {
   const { id } = useParams<{ id: string }>();

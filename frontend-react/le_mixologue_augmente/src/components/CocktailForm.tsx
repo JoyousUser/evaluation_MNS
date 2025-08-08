@@ -1,7 +1,8 @@
-import { FC, useState } from 'react';
-import { generateCocktail } from '../services/api';
+import type { FC } from 'react';
+import { useState } from 'react';
+import  {generateCocktail}  from '../services/api';
 import CocktailCard from './CocktailCard';
-import { Cocktail } from '../services/api';
+import type { Cocktail } from '../services/api';
 
 interface CocktailFormProps {
   onCocktailGenerated?: (cocktail: Cocktail) => void;

@@ -1,8 +1,9 @@
 // src/pages/HistoryPage.tsx
-import { FC, useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
+import type { FC } from 'react';
 import { getCocktailHistory } from '../services/api';
 import CocktailCard from '../components/CocktailCard';
-import { Cocktail } from '../services/api';
+import type { Cocktail } from '../services/api';
 
 const HistoryPage: FC = () => {
   const [cocktails, setCocktails] = useState<Cocktail[]>([]);

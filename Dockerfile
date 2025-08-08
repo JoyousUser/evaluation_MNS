@@ -1,4 +1,4 @@
-# Use official Python 3.11 base image
+# Dockerfile
 FROM python:3.11-slim
 
 # Set environment variables
@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED 1
 # Set work directory
 WORKDIR /app
 
-# Install system dependencies for gevent, cryptography, and database
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
@@ -19,12 +19,8 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project files
+# Copy project files - THIS MUST INCLUDE wsgi.py
 COPY . .
 
-# Expose the port the app runs on
-EXPOSE 5000
-
-# Run the application with Gunicorn and gevent workers for better I/O handling
-# Using 4 workers as a good starting point for a bar application
+# Run the application
 CMD ["gunicorn", "-k", "gevent", "-w", "4", "--bind", "0.0.0.0:5000", "wsgi:app"]

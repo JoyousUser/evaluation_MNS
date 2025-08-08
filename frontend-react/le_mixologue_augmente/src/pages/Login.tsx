@@ -1,6 +1,7 @@
-import { FC, useState } from 'react';
+import {  useState } from 'react';
+import type { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiLogin } from '../services/api';
+import  { apiLogin } from '../services/api';
 
 const Login: FC = () => {
   const [password, setPassword] = useState('');
