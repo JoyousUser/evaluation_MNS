@@ -40,7 +40,9 @@ with excellent answers, considering the minimal use of tokens and creative natur
 prefer a good and recent model(for production context).
 
 To use your own model replace the imports for azure openai with your own sdk like ollama.
-# pip install ollama
+A local model version of the code will require some adjustments, use this app only with an API for now.
+I documented some steps before code changes to use a local model.
+# pip install ollama, pip freeze > requirements.txt
     ollama:
         image: ollama/ollama
         ports:
