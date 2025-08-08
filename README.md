@@ -3,8 +3,8 @@
 
 <center>Documentation file</center>
 Flask was used on account of the service structure of the project and its future scalability as well as simplicity.
-We can consider a move to uvicorn.
-Django was a possibility as it handles asynchronous tasks much less well, and for a small scale deployment with time constraints Flask was prefered.
+We can consider a move to uvicorn for better async handling of API calls to the model.
+Django was a possibility as it can handle asynchronous tasks too, but for this small scale deployment with time constraints Flask was prefered.
 Fastapi would have been a good choice too.
 
 ## 1 How to install the app locally?
@@ -41,6 +41,24 @@ prefer a good and recent model(for production context).
 
 To use your own model replace the imports for azure openai with your own sdk like ollama.
 # pip install ollama
+    ollama:
+        image: ollama/ollama
+        ports:
+        - "11434:11434"
+        volumes:
+        - ollama:/root/.ollama
+        deploy:
+            resources:
+            reservations:
+                # Adjust based on which model you're using
+                # For 8B model:
+                memory: 8G
+                # For 70B model:
+                # memory: 90G
+                # For 405B model:
+                # memory: 500G
+        command: serve
+
 All is stored in llm variable.
 
 The current setup does not use langgraph tools yet, but as they would be useful i recommend a model that handles tools.
