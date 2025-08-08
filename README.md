@@ -40,7 +40,7 @@ with excellent answers, considering the minimal use of tokens and creative natur
 prefer a good and recent model(for production context).
 
 To use your own model replace the imports for azure openai with your own sdk like ollama.
-pip install ollama
+# pip install ollama
 All is stored in llm variable.
 
 The current setup does not use langgraph tools yet, but as they would be useful i recommend a model that handles tools.
