@@ -34,15 +34,39 @@ AZURE_OPENAI_API_VERSION=""
 SECRET_KEY=
 ADMIN_PASSWORD=
 
+
+All is stored in llm variable for the model.
+The password is called in the login route.
+The current setup does not use langgraph tools yet, but as they would be useful i recommend a model that handles tools.
+
+
+# /evaluation_MNS/frontend-react/le_mixologue_augmente/.env
+
+VITE_API_URL=
+cd your folder containing the app and the docker compose(i.e evaluation_MNS)
+docker compose up --build
+Note the absence of '-' in the docker compose command.
+
+## docker compose up --build
+
+
+in case of launch issue, verify the presence of a wsgi.py file in the root folder, it should be in the github repo.
+The ports are the same as defined in the docker-compose file 80 for the React app and 5000 for the flask app
+
 We pull a model from Azure openai, but you could swap in your own dockerized or API model, 
-this was developped on an old machine so the api was preferred, i used gpt-4.1-mini as token costs are minimal
+this was developped on an old machine so the API was preferred, i used gpt-4.1-mini as token costs are minimal
 with excellent answers, considering the minimal use of tokens and creative nature of the answers expected,
 prefer a good and recent model(for production context).
+
+
+## Fancy trying your ozwn local model ?? Here is one way to do it:
 
 To use your own model replace the imports for azure openai with your own sdk like ollama.
 A local model version of the code will require some adjustments, use this app only with an API for now.
 I documented some steps before code changes to use a local model.
-# pip install ollama, pip freeze > requirements.txt
+## These are for guidance only and not functional yet nor necessary to run the app, simply fill the .env variables and use azure api.
+
+# pip install ollama, pip freeze > requirements.txt, then in the docker-compose file
     ollama:
         image: ollama/ollama
         ports:
@@ -61,20 +85,18 @@ I documented some steps before code changes to use a local model.
                 # memory: 500G
         command: serve
 
-All is stored in llm variable.
 
-The current setup does not use langgraph tools yet, but as they would be useful i recommend a model that handles tools.
+```python
+import os
+import requests
 
-
-# /evaluation_MNS/frontend-react/le_mixologue_augmente/.env
-
-VITE_API_URL=
-cd your folder containing the app and the docker compose(i.e evaluation_MNS)
-docker compose up --build
-Note the absence of '-' in the docker compose command.
-
-## docker compose up --build
-
-in case of launch issue, verify the presence of a wsgi.py file in the root folder
-The ports are the same as defined in the docker-compose file 80 for the React app and 5000 for the flask app
-
+def generate_cocktail(user_input):
+    if os.getenv('USE_LOCAL_MODEL', 'false').lower() == 'true':
+        # Ollama implementation
+        response = requests.post(
+            "http://ollama:11434/api/generate",
+            json={"model": "llama3.1:8b", "prompt": user_input, "stream": False}
+        )
+        # Parse Ollama response...
+    else:
+        # Current Azure implementation
